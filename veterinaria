@@ -1,0 +1,58 @@
+package veterinaria;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+/**
+ *
+ * @author samuv
+ */
+public class Veterinaria {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws ParseException {
+        Scanner teclado = new Scanner(System.in);
+        System.out.print("Ingrese Codigo de la Mascota: ");
+        String codigo = teclado.nextLine();
+        System.out.print("Ingrese Raza de la Mascota: ");
+        String raza = teclado.nextLine();
+        System.out.print("Ingrese Nombre de la Mascota: ");
+        String nombre = teclado.nextLine();
+        System.out.print("Ingrese Fecha de Nacimiento de la Mascota: ");
+        String fecstr = teclado.nextLine();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date fecnac = formato.parse(fecstr);
+        Mascota mascota1 = new Mascota(codigo, raza, nombre, fecnac);
+//        Mascota mascota2 = new Mascota("M100", "Gato", "Felix", fecnac);
+//        System.out.println(mascota1.getNombre() +' '+ mascota1.edad());
+//        System.out.println(mascota2.getNombre() +' '+mascota2.getRaza());
+        
+        System.out.print("Ingrese Id de la Vacuna: ");
+        int id = teclado.nextInt();
+        teclado.nextLine();
+        System.out.print("Ingrese Fecha de Vacunacion de la Mascota: ");
+        fecstr = teclado.nextLine();
+        Date fecvac = formato.parse(fecstr);
+        System.out.print("Ingrese Tipo de Vacuna: ");
+        char tipo = teclado.nextLine().charAt(0);
+        System.out.print("Ingrese el Costo de la Vacuna; ");
+        int costo = teclado.nextInt();
+        boolean estado = true;
+        System.out.print("Ingrese el Costo de insumos; ");
+        int costo_ins = teclado.nextInt();        
+        Vacunacion vacuna1 = new Vacunacion(id, mascota1, fecvac, tipo, costo, estado, costo_ins);
+        System.out.println("[Codigo de la mascota] : " + vacuna1.getMascota().getCodigo());
+        System.out.println("[Nombre de la mascota] : " + vacuna1.getMascota().getNombre());
+        System.out.println("[Edad de la mascota]   : " + vacuna1.getMascota().edad());
+        System.out.println("[Id de la Vacuna]      : " + vacuna1.getIdVacunacion());
+        System.out.println("[Tipo de la Vacuna]    : " + vacuna1.getTipo());
+        System.out.println("[Costo de la Vacuna]   : " + vacuna1.getCosto());
+        System.out.println("[Costo de los Insumos] : " + vacuna1.getCosto_ins());
+        System.out.println("[total a Pagar]        : " + vacuna1.totalPagar());
+    }
+    
+}
